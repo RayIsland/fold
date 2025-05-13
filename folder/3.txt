@@ -1,0 +1,100 @@
+structure:
+my-gradle-project
+2 │── build.gradle (Groovy Build Script)
+3 │── settings.gradle
+4 │── src
+5 │ ├── main
+6 │ │ ├── java
+7 │ │ └── resources
+8 │ ├── test
+9 │ │ ├── java
+10 │ │ └── resources
+
+build.gradle
+ plugins {
+ id 'application'
+ }
+
+ repositories {
+ mavenCentral()
+ }
+
+ dependencies {
+ testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+ }
+
+ application {
+ mainClass = 'com.example.Main'
+ }
+
+ Main.java in src/main/java/com/example
+ package com.example;
+ public class Main {
+ public static void main(String[] args) {
+ System.out.println("Hello from Gradle!");
+ }
+ }
+gradle run
+
+github pages after pushing to github
+
+Testing the Website using Selenium & TestNG
+build.gradle
+dependencies {
+testImplementation 'org.seleniumhq.selenium:selenium-java:4.28.1' // use the latest stable version
+ testImplementation 'org.testng:testng:7.4.0' // use the latest stable version
+ }
+ test {
+ useTestNG()
+ }
+
+ src/test/java/org/test/WebpageTest.java
+  package org.test;
+ import org.openqa.selenium.WebDriver;
+ import org.openqa.selenium.chrome.ChromeDriver;
+ import org.testng.Assert;
+ import org.testng.annotations.AfterTest;
+ import org.testng.annotations.BeforeTest;
+ import org.testng.annotations.Test;
+ import static org.testng.Assert.assertTrue;
+ public class WebpageTest {
+ private static WebDriver driver;
+ @BeforeTest
+ public void openBrowser() throws InterruptedException {
+ driver = new ChromeDriver();
+ driver.manage().window().maximize();
+ Thread.sleep(2000);
+ driver.get("https://sauravsarkar-codersarcade.github.io/CA-GRADLE/");
+ }
+ @Test
+ public void titleValidationTest(){
+ String actualTitle = driver.getTitle();
+ String expectedTitle = "Tripillar Solutions";
+ Assert.assertEquals(actualTitle, expectedTitle);
+ assertTrue(true, "Title should contain 'Tripillar'");
+ }
+ @AfterTest
+ public void closeBrowser() throws InterruptedException {
+ Thread.sleep(1000);
+ driver.quit();
+ }
+ }
+
+ JAR packaging
+  plugins {
+ id 'java'
+ id 'application'
+ }
+ application {
+ mainClass = 'com.example.Main'
+ }
+ jar {
+ manifest {
+ attributes 'Main-Class': 'com.example.Main' // This tells Java where to start execution
+ }
+ }
+gradle jar
+java -jar build/libs/<my-gradle-project>.jar
+
+##
+gradle init, gradle build, gradle run, gradle clean, gradle test, gradle jar
