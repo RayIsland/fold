@@ -1,11 +1,16 @@
-html
-css
+Add the dependiceiss from maven repo and TestNG
+
+src/main/resources : html,css
+
 <build>pom.xml file
+
 mvn clean install
+
 push to github
 
-https://rayisland.github.io/xyz/
+Accesss your website: https://rayisland.github.io/xyz/
 
+Selenium Test:
 WebPageTest.java in the src/test/java
 package org.test;
 import org.openqa.selenium.WebDriver;
@@ -29,9 +34,9 @@ public class WebpageTest {
     @Test
     public void titleValidationTest() {
         String actualTitle = driver.getTitle();
-        String expectedTitle = "Tripillar Solutions";
+        String expectedTitle = "My Simple Website";
         Assert.assertEquals(actualTitle, expectedTitle);
-        assertTrue(true, "Title should contain 'Tripillar'");
+        assertTrue(true, "Title should contain 'My Simple Website'");
     }
 
     @AfterTest
@@ -41,7 +46,7 @@ public class WebpageTest {
     }
 }
 
-this might also be the same webPageTest.java
+this might also be the same WebPageTest.java
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -77,8 +82,13 @@ public class webpage{
     }
 }
 run webPageTest.java.
-mvn test
+In IntelliJ, right-click the WebPageTest class and select Run 'WebPageTest' .
+The test will launch Chrome, open the webpage, and validate the title.
+OR
+ runs all tests under src/test/java: mvn test
 
+
+---------
 add maven-jar-plugin to pom.xml
 <plugin>
 <groupId>org.apache.maven.plugins</groupId>
@@ -94,13 +104,15 @@ add maven-jar-plugin to pom.xml
  </configuration>
  </plugin>
 
- src/main/java
+ src/main/java- MainClass.java
   package com.example;
  public class MainClass {
  public static void main(String[] args) {
  System.out.println("Hello, this is a simple output from the main class!");
  }
  }
+
+ Packaging the project into a JAR: target/your-project-name.jar
 mvn clean package
 java -jar target/your-project-name.jar
 
