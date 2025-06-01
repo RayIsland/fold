@@ -119,3 +119,4 @@ java -jar target/your-project-name.jar
 mvn clean package # Clean & build the project
 mvn clean install # Clean, build & install in local repo
 mvn deploy # Deploy to a remote repository
+mvn clean --build sucesdss
