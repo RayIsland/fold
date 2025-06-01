@@ -33,3 +33,6 @@ Maven Integration Plugin
 SSH Agent Plugin
 
 new item, freestyle project
+
+--
+6th prgm
