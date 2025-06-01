@@ -8,7 +8,7 @@ my-gradle-project
 7 │ │ └── resources
 8 │ ├── test
 9 │ │ ├── java
-10 │ │ └── resources
+10│ │ └── resources
 
 build.gradle
  plugins {
@@ -34,6 +34,10 @@ build.gradle
  System.out.println("Hello from Gradle!");
  }
  }
+
+In IntelliJ IDEA, open the Gradle tool window View → Tool Windows → Gradle).
+Click Tasks > application > run 
+OR
 gradle run
 
 github pages after pushing to github
@@ -49,7 +53,7 @@ testImplementation 'org.seleniumhq.selenium:selenium-java:4.28.1' // use the lat
  }
 
  src/test/java/org/test/WebpageTest.java
-  package org.test;
+ package org.test;
  import org.openqa.selenium.WebDriver;
  import org.openqa.selenium.chrome.ChromeDriver;
  import org.testng.Assert;
@@ -64,7 +68,7 @@ testImplementation 'org.seleniumhq.selenium:selenium-java:4.28.1' // use the lat
  driver = new ChromeDriver();
  driver.manage().window().maximize();
  Thread.sleep(2000);
- driver.get("https://sauravsarkar-codersarcade.github.io/CA-GRADLE/");
+ driver.get("https://rayisland.github.io/xyz/");
  }
  @Test
  public void titleValidationTest(){
@@ -80,8 +84,12 @@ testImplementation 'org.seleniumhq.selenium:selenium-java:4.28.1' // use the lat
  }
  }
 
+Run the tests:
+gradle test
+
  JAR packaging
-  plugins {
+ build.gradle
+plugins {
  id 'java'
  id 'application'
  }
@@ -93,8 +101,76 @@ testImplementation 'org.seleniumhq.selenium:selenium-java:4.28.1' // use the lat
  attributes 'Main-Class': 'com.example.Main' // This tells Java where to start execution
  }
  }
+
 gradle jar
 java -jar build/libs/<my-gradle-project>.jar
 
 ##
 gradle init, gradle build, gradle run, gradle clean, gradle test, gradle jar
+
+
+gradle run
+gradle build 
+gradle clean
+gradle jar
+
+
+___________
+Kotlin
+
+build.gradle.kts
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+plugins {
+    kotlin("jvm") version "1.8.10" // Use latest stable Kotlin version
+    application
+}
+
+group = "org.example"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(kotlin("stdlib")) // Kotlin Standard Library
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "17" // Match with your JDK version
+}
+
+application {
+    mainClass.set("MainKt") // Update this if using a package
+}
+
+Main.kt in src/main/kotlin/
+package org.example
+ fun main() {
+ println("Hello, Gradle with Kotlin DSL!")
+ }
+
+./gradlew build
+./gradlew run
+
+packaging into jar:
+build.gradle.kts
+tasks.register<Jar>("fatJar") {
+    archiveClassifier.set("all")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes["Main-Class"] = "MainKt"
+    }
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+    with(tasks.jar.get() as CopySpec)
+}
+
+./gradlew fatJar
+java -jar build/libs/MVNGRDKOTLINDEMO-1.0-SNAPSHOT-all.jar
