@@ -7,3 +7,19 @@ sudo systemctl enable jenkins
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 http://localhost:8080
 
+
+
+4 Installing Jenkins Using WAR File Works on Any OS
+This method allows you to run Jenkins without installing it as a service.
+ Download the Jenkins WAR File
+🔗 Download from: Download and deploy
+Choose Generic Java Package (.war).
+Run Jenkins Using Java
+Navigate to the folder where the .war file is downloaded and run
+ java -jar jenkins.war --httpPort=8080
+
+Setting Up Global Tool Configuration
+Configure Java, Maven, and Gradle in Jenkins: 󾠮 Go to Manage Jenkins → Global Tool Configuration 󾠯 Add paths for:
+JDK ( C:\Program Files\Java\jdk-17 )
+Maven ( C:\Maven\apache-maven-<version> )
+Gradle ( C:\Gradle\gradle-<version> )
