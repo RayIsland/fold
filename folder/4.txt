@@ -1,3 +1,14 @@
+. Open IntelliJ IDEA
+Launch IntelliJ IDEA and click on File → New → Project.
+. Select Maven
+In the New Project window, choose Maven from the options on the left.
+Check Create from archetype and select maven-archetype-quickstart.
+Click Next.
+. Enter Project Details
+GroupId: com.example
+ArtifactId: MVNGRDLDEMO
+Click Next and then Finish
+
 pom.xml
 <build>
   <plugins>
@@ -30,29 +41,37 @@ pom.xml
 
 mvn clean compile
 mvn package
+After running the above, your .jar file will be located at: D:\Idea Projects\MVNGRDLDEMO\target\MVNGRDLDEMO-1.0-SNAPSHOT.jar
 java -jar target\MVNGRDLDEMO-1.0-SNAPSHOT.jar
 
 migrate
+cd "D:\Idea Projects\MVNGRDLDEMO"
 gradle init --type pom
 
+review and update build.gradle
 build.gradle
 plugins {
- id 'java'
- }
- group = 'com.example'
- version = '1.0-SNAPSHOT'
- repositories {
- mavenCentral()
- }
- dependencies {
- testImplementation 'junit:junit:4.13.2'
- }
+    id 'java'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+}
+
 jar {
- manifest {
- attributes(
- 'Main-Class': 'com.example.App'
- )
- }
- }
+    manifest {
+        attributes(
+            'Main-Class': 'com.example.App'
+        )
+    }
+}
+
 gradle clean build
 java -jar build/libs/MVNGRDLDEMO-1.0-SNAPSHOT.jar
