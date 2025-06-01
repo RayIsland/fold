@@ -23,3 +23,9 @@ Configure Java, Maven, and Gradle in Jenkins: 󾠮 Go to Manage Jenkins → Glob
 JDK ( C:\Program Files\Java\jdk-17 )
 Maven ( C:\Maven\apache-maven-<version> )
 Gradle ( C:\Gradle\gradle-<version> )
+
+
+
+Where to find the initial Jenkins password:
+After installation, it's stored in:
+/var/lib/jenkins/secrets/initialAdminPassword (Linux)
