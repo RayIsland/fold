@@ -1,0 +1,35 @@
+if no, download from store
+ubuntu:
+sudo apt update && sudo apt upgrade -y
+
+sudo apt install openjdk-17-jdk -y
+java --version
+
+sudo apt install maven -y
+mvn --version
+
+sudo apt install git -y
+git --version
+
+sudo apt update
+sudo apt install ansible -y
+ansible --version
+
+set ssh connection
+ssh-keygen -t rsa -b 4096
+
+copy public key
+ip a
+OR
+hostname -I
+
+whoami
+
+ssh user@172.27.158.79
+
+localhost:8080
+manage jenkins: plugins whether they are installed or not
+Maven Integration Plugin
+SSH Agent Plugin
+
+new item, freestyle project
