@@ -1,0 +1,23 @@
+maven project 2nd one
+mvn test --to run the project
+
+jenkins dashboard-new item-freestyle
+description:
+Build Steps: execute windows batch command
+cd D:\Idea Projects\MVNGRDLDEMO
+mvn test
+
+Build now
+
+_________
+gitbhub
+
+source code management: git: https://github.com/RayIsland/xyz
+credenyilas: git username, password, idGithub
+build now
+
+source code management: git: https://github.com/RayIsland/xyz
+credenyilas: git username, password, idGithub
+build steps:execute windows batch command: 
+mvn test
+build now
